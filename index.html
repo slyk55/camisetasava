@@ -1,0 +1,2815 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ava Store | Estampas Autorais & DTF Ultra HD</title>
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+    <meta property="og:site_name" content="Ava Store">
+    <meta property="og:title" content="Ava Store | Estampas Autorais & DTF Ultra HD">
+    <meta property="og:description" content="Coleção exclusiva em DTF têxtil de alta definição. Estampas autorais em alta resolução sobre malha nobre.">
+    <meta property="og:url" content="https://camisetasava.com/">
+    <meta property="og:image" content="https://camisetasava.com/camiseta01.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    >
+
+    <style>
+
+        :root {
+            --purple-accent: #b388ff;
+            --purple-glow: rgba(179,136,255,.25);
+            --dark-card: rgba(15,23,32,.85);
+            --border-line: #243b53;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        header {
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:18px 8%;
+            background:rgba(10,15,22,.95);
+            border-bottom:1px solid #243b53;
+            position:relative;
+        }
+
+        .nav-links {
+            display:flex;
+            align-items:center;
+            gap:20px;
+        }
+
+        .menu-toggle {
+            display:none;
+            background:none;
+            border:none;
+            color:#b388ff;
+            font-size:1.5rem;
+            cursor:pointer;
+        }
+
+        .store-cart-count {
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            min-width:18px;
+            height:18px;
+            padding:0 5px;
+            margin-left:2px;
+            box-sizing:border-box;
+            border-radius:20px;
+            background:var(--purple-accent);
+            color:#0a0f16;
+            font-size:.65rem;
+            font-weight:800;
+            line-height:1;
+            vertical-align:middle;
+        }
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .store-hero {
+            padding:50px 8% 30px;
+            text-align:center;
+            max-width:900px;
+            margin:auto;
+        }
+
+        .badge-drop {
+            display:inline-block;
+            background:rgba(179,136,255,.12);
+            border:1px solid var(--purple-accent);
+            color:var(--purple-accent);
+            font-size:.75rem;
+            font-weight:700;
+            padding:4px 12px;
+            border-radius:20px;
+            text-transform:uppercase;
+            letter-spacing:1px;
+            margin-bottom:14px;
+        }
+
+        .store-hero h1 {
+            font-size:2.2rem;
+            color:#fff;
+            margin:0 0 14px;
+            font-weight:800;
+            line-height:1.25;
+        }
+
+        .store-hero h1 span {
+            color:var(--purple-accent);
+        }
+
+        .store-hero p {
+            font-size:1.02rem;
+            color:#b0c4de;
+            line-height:1.6;
+            margin:0;
+        }
+
+        /* =====================================================
+           PROCESSO
+        ===================================================== */
+
+        .process-section {
+            padding:20px 8% 40px;
+            max-width:1100px;
+            margin:auto;
+        }
+
+        .process-grid {
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+            gap:16px;
+        }
+
+        .process-card {
+            background:rgba(15,23,32,.85);
+            border:1px solid #243b53;
+            border-radius:8px;
+            padding:18px;
+            text-align:left;
+        }
+
+        .process-card i {
+            font-size:1.3rem;
+            color:var(--purple-accent);
+            margin-bottom:10px;
+            display:block;
+        }
+
+        .process-card h4 {
+            color:#fff;
+            margin:0 0 6px;
+            font-size:1rem;
+        }
+
+        .process-card p {
+            font-size:.85rem;
+            color:#8da0b3;
+            margin:0;
+            line-height:1.45;
+        }
+
+        /* =====================================================
+           CATÁLOGO
+        ===================================================== */
+
+        .catalog-section {
+            padding:20px 8% 50px;
+            max-width:1100px;
+            margin:auto;
+        }
+
+        .catalog-header {
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            margin-bottom:24px;
+            border-bottom:1px solid #243b53;
+            padding-bottom:12px;
+        }
+
+        .catalog-header h2 {
+            margin:0;
+            color:var(--purple-accent);
+            font-size:1.4rem;
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+
+        .catalog-header span {
+            color:#8da0b3;
+            font-size:.85rem;
+        }
+
+        .catalog-grid {
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+            gap:22px;
+        }
+
+        .shirt-card {
+            background:rgba(15,23,32,.85);
+            border:1px solid #243b53;
+            border-radius:8px;
+            overflow:hidden;
+            display:flex;
+            flex-direction:column;
+            justify-content:space-between;
+            transition:border-color .2s;
+        }
+
+        .shirt-card:hover {
+            border-color:var(--purple-accent);
+        }
+
+        .shirt-thumb {
+            width:100%;
+            height:340px;
+            background:#101721;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            position:relative;
+            overflow:hidden;
+            cursor:zoom-in;
+        }
+
+        .shirt-thumb img {
+            width:100%;
+            height:100%;
+            object-fit:contain;
+            padding:10px;
+            transition:transform .3s ease;
+        }
+
+        .shirt-thumb:hover img {
+            transform:scale(1.04);
+        }
+
+        .tag-exclusive {
+            position:absolute;
+            top:10px;
+            left:10px;
+            background:#0a0f16;
+            color:var(--purple-accent);
+            border:1px solid var(--purple-accent);
+            font-size:.68rem;
+            font-weight:700;
+            padding:3px 8px;
+            border-radius:4px;
+            text-transform:uppercase;
+            z-index:2;
+            pointer-events:none;
+        }
+
+        .zoom-hint {
+            position:absolute;
+            bottom:10px;
+            right:10px;
+            background:rgba(10,15,22,.8);
+            border:1px solid #243b53;
+            color:var(--purple-accent);
+            font-size:.72rem;
+            font-weight:600;
+            padding:4px 8px;
+            border-radius:4px;
+            display:inline-flex;
+            align-items:center;
+            gap:5px;
+            pointer-events:none;
+            transition:.2s;
+        }
+
+        .shirt-thumb:hover .zoom-hint {
+            color:#fff;
+            border-color:var(--purple-accent);
+        }
+
+        .shirt-content {
+            padding:18px;
+            display:flex;
+            flex-direction:column;
+            flex-grow:1;
+        }
+
+        .shirt-content h3 {
+            color:#fff;
+            font-size:1.1rem;
+            margin:0 0 6px;
+        }
+
+        .shirt-price-tag {
+            color:var(--purple-accent);
+            font-size:1.15rem;
+            font-weight:800;
+            margin-bottom:8px;
+            display:flex;
+            align-items:baseline;
+            gap:4px;
+        }
+
+        .shirt-price-tag small {
+            font-size:.75rem;
+            color:#8da0b3;
+            font-weight:400;
+        }
+
+        .shirt-content .desc {
+            font-size:.88rem;
+            color:#b0c4de;
+            line-height:1.45;
+            margin:0 0 14px;
+            flex-grow:1;
+        }
+
+        .shirt-specs {
+            background:rgba(10,15,22,.6);
+            border:1px solid #243b53;
+            border-radius:6px;
+            padding:10px 12px;
+            font-size:.8rem;
+            color:#b0c4de;
+            margin-bottom:14px;
+        }
+
+        .shirt-specs div {
+            margin:3px 0;
+        }
+
+        .badge-pronta-entrega {
+            color:#00ff7f;
+            font-weight:700;
+        }
+
+        .badge-encomenda {
+            color:#00e5ff;
+            font-weight:600;
+        }
+
+        .btn-size-shortcut {
+            display:inline-flex;
+            align-items:center;
+            gap:6px;
+            color:var(--purple-accent);
+            text-decoration:none;
+            font-size:.78rem;
+            font-weight:600;
+            margin-top:4px;
+        }
+
+        .btn-size-shortcut:hover {
+            color:#fff;
+            text-decoration:underline;
+        }
+
+        .product-options {
+            display:grid;
+            grid-template-columns:1fr 105px;
+            gap:10px;
+            margin-bottom:8px;
+        }
+
+        .product-option label {
+            display:block;
+            margin-bottom:6px;
+            color:#8da0b3;
+            font-size:.72rem;
+            font-weight:700;
+        }
+
+        .product-option select {
+            width:100%;
+            height:40px;
+            box-sizing:border-box;
+            background:#0a0f16;
+            color:#fff;
+            border:1px solid #34495e;
+            border-radius:6px;
+            padding:8px;
+            font-family:inherit;
+            outline:none;
+            cursor:pointer;
+        }
+
+        .product-option select:focus {
+            border-color:var(--purple-accent);
+        }
+
+        /* Status resumido e enxuto */
+        .selected-size-status {
+            font-size:.72rem;
+            padding:5px 8px;
+            border-radius:4px;
+            margin-bottom:12px;
+            background:rgba(10,15,22,.6);
+            border:1px solid #243b53;
+            display:flex;
+            align-items:center;
+            gap:6px;
+            min-height:16px;
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis;
+        }
+
+        .selected-size-status.ready {
+            color:#00ff7f;
+            border-color:rgba(0,255,127,.3);
+            background:rgba(0,255,127,.05);
+        }
+
+        .selected-size-status.order {
+            color:#00e5ff;
+            border-color:rgba(0,229,255,.3);
+            background:rgba(0,229,255,.05);
+        }
+
+        .btn-add-cart {
+            width:100%;
+            background:#25D366;
+            color:#000;
+            border:none;
+            font-weight:700;
+            font-size:.88rem;
+            padding:12px;
+            border-radius:6px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:8px;
+            cursor:pointer;
+            font-family:inherit;
+        }
+
+        .btn-add-cart:hover {
+            opacity:.9;
+        }
+
+        /* =====================================================
+           MEDIDAS
+        ===================================================== */
+
+        .size-chart-section {
+            padding:20px 8% 50px;
+            max-width:900px;
+            margin:auto;
+            scroll-margin-top:80px;
+        }
+
+        .size-chart-box {
+            background:rgba(15,23,32,.85);
+            border:1px solid #243b53;
+            border-radius:8px;
+            padding:24px;
+        }
+
+        .size-chart-header {
+            margin-bottom:18px;
+        }
+
+        .size-chart-header h3 {
+            margin:0 0 6px;
+            color:var(--purple-accent);
+            font-size:1.25rem;
+        }
+
+        .size-chart-header p {
+            margin:0;
+            font-size:.85rem;
+            color:#8da0b3;
+        }
+
+        .table-responsive {
+            overflow-x:auto;
+        }
+
+        .size-table {
+            width:100%;
+            border-collapse:collapse;
+            text-align:center;
+            font-size:.9rem;
+        }
+
+        .size-table th {
+            background:rgba(179,136,255,.12);
+            color:var(--purple-accent);
+            padding:12px;
+            border:1px solid #243b53;
+        }
+
+        .size-table td {
+            padding:12px;
+            border:1px solid #243b53;
+            color:#b0c4de;
+        }
+
+        .size-table td strong {
+            color:#fff;
+        }
+
+        .tag-row-pronta {
+            font-size:.7rem;
+            background:rgba(0,255,127,.15);
+            color:#00ff7f;
+            padding:2px 6px;
+            border-radius:4px;
+        }
+
+        .tag-row-encomenda {
+            font-size:.7rem;
+            background:rgba(0,229,255,.12);
+            color:#00e5ff;
+            padding:2px 6px;
+            border-radius:4px;
+        }
+
+        .table-footer-info {
+            display:flex;
+            justify-content:space-between;
+            flex-wrap:wrap;
+            margin-top:14px;
+            font-size:.8rem;
+            color:#8da0b3;
+            gap:6px;
+        }
+
+        /* =====================================================
+           CARRINHO
+        ===================================================== */
+
+        .store-cart-overlay {
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,.68);
+            z-index:4998;
+            opacity:0;
+            visibility:hidden;
+            transition:.25s;
+        }
+
+        .store-cart-overlay.active {
+            opacity:1;
+            visibility:visible;
+        }
+
+        .store-cart-panel {
+            position:fixed;
+            top:0;
+            right:-460px;
+            width:min(440px,94vw);
+            height:100vh;
+            background:#0d141d;
+            border-left:1px solid #243b53;
+            z-index:4999;
+            display:flex;
+            flex-direction:column;
+            transition:right .28s ease;
+            box-shadow:-10px 0 30px rgba(0,0,0,.35);
+        }
+
+        .store-cart-panel.active {
+            right:0;
+        }
+
+        .store-cart-header {
+            flex:0 0 auto;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:18px;
+            border-bottom:1px solid #243b53;
+        }
+
+        .store-cart-header h3 {
+            margin:0;
+            color:var(--purple-accent);
+            font-size:1.05rem;
+        }
+
+        .store-cart-close {
+            background:none;
+            border:none;
+            color:#fff;
+            font-size:1.25rem;
+            cursor:pointer;
+        }
+
+        .mobile-cart-steps {
+            display:none;
+        }
+
+        .cart-step-items {
+            flex:1;
+            min-height:0;
+            display:flex;
+            flex-direction:column;
+        }
+
+        .store-cart-items {
+            flex:1;
+            min-height:0;
+            overflow-y:auto;
+            padding:14px;
+            -webkit-overflow-scrolling:touch;
+        }
+
+        .store-cart-empty {
+            text-align:center;
+            color:#8da0b3;
+            padding:45px 15px;
+            line-height:1.6;
+        }
+
+        .store-cart-empty i {
+            display:block;
+            font-size:2rem;
+            color:#526477;
+            margin-bottom:12px;
+        }
+
+        .store-cart-item {
+            background:rgba(15,23,32,.9);
+            border:1px solid #243b53;
+            border-radius:6px;
+            padding:11px;
+            margin-bottom:9px;
+        }
+
+        .store-cart-item-top {
+            display:flex;
+            justify-content:space-between;
+            gap:10px;
+            align-items:flex-start;
+        }
+
+        .store-cart-item h4 {
+            color:#fff;
+            margin:0 0 6px;
+            font-size:.88rem;
+        }
+
+        .store-cart-item-info {
+            color:#9db0c3;
+            font-size:.76rem;
+            line-height:1.55;
+        }
+
+        /* Tags de disponibilidade no carrinho */
+        .store-cart-badge {
+            display:inline-flex;
+            align-items:center;
+            gap:5px;
+            font-size:.7rem;
+            font-weight:700;
+            padding:2px 8px;
+            border-radius:4px;
+            margin-top:4px;
+        }
+
+        .store-cart-ready {
+            color:#00ff7f;
+            background:rgba(0,255,127,.12);
+            border:1px solid rgba(0,255,127,.3);
+        }
+
+        .store-cart-order {
+            color:#00e5ff;
+            background:rgba(0,229,255,.12);
+            border:1px solid rgba(0,229,255,.3);
+        }
+
+        .store-cart-remove {
+            background:none;
+            border:none;
+            color:#ff647c;
+            cursor:pointer;
+            padding:5px;
+        }
+
+        .cart-items-footer {
+            flex:0 0 auto;
+            border-top:1px solid #243b53;
+            background:#0a1017;
+            padding:15px;
+        }
+
+        .store-cart-total {
+            display:flex;
+            justify-content:space-between;
+            gap:10px;
+            color:#b0c4de;
+            font-size:.84rem;
+            margin-bottom:6px;
+        }
+
+        .store-cart-subtotal {
+            display:flex;
+            justify-content:space-between;
+            gap:10px;
+            color:#fff;
+            font-size:.95rem;
+            font-weight:700;
+            margin-bottom:12px;
+            padding-top:6px;
+            border-top:1px dashed #243b53;
+        }
+
+        .mobile-continue-button {
+            display:none;
+        }
+
+        /* =====================================================
+           ETAPA 2 - ENTREGA
+        ===================================================== */
+
+        .cart-step-delivery {
+            flex:0 0 auto;
+            border-top:1px solid #243b53;
+            background:#0a1017;
+            padding:15px;
+        }
+
+        .delivery-title {
+            display:none;
+        }
+
+        .store-customer-fields {
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:8px;
+            margin-bottom:9px;
+        }
+
+        .store-customer-field {
+            min-width:0;
+        }
+
+        .store-customer-field.full {
+            grid-column:1 / -1;
+        }
+
+        .store-customer-fields input {
+            width:100%;
+            min-width:0;
+            box-sizing:border-box;
+            padding:10px;
+            background:#101721;
+            border:1px solid #34495e;
+            border-radius:5px;
+            color:#fff;
+            outline:none;
+            font-family:inherit;
+        }
+
+        .store-customer-fields input:focus {
+            border-color:var(--purple-accent);
+        }
+
+        .store-customer-fields input::placeholder {
+            color:#71869a;
+        }
+
+        .cep-status {
+            grid-column:1 / -1;
+            min-height:16px;
+            margin:-1px 2px 2px;
+            color:#8da0b3;
+            font-size:.7rem;
+            line-height:1.3;
+        }
+
+        .cep-status.searching {
+            color:#b388ff;
+        }
+
+        .cep-status.success {
+            color:#00ff7f;
+        }
+
+        .cep-status.warning {
+            color:#00e5ff;
+        }
+
+        .cep-status.error {
+            color:#ff7b8d;
+        }
+
+        .store-checkout,
+        .mobile-continue-button {
+            width:100%;
+            border:0;
+            border-radius:6px;
+            background:#25D366;
+            color:#000;
+            padding:12px;
+            font-weight:800;
+            cursor:pointer;
+            align-items:center;
+            justify-content:center;
+            gap:8px;
+            font-family:inherit;
+        }
+
+        .mobile-back-button {
+            display:none;
+            width:100%;
+            border:1px solid #34495e;
+            border-radius:6px;
+            background:#101721;
+            color:#b0c4de;
+            padding:11px;
+            font-weight:700;
+            cursor:pointer;
+            align-items:center;
+            justify-content:center;
+            gap:8px;
+            font-family:inherit;
+            margin-bottom:8px;
+        }
+
+        .store-clear-cart {
+            width:100%;
+            margin-top:7px;
+            padding:7px;
+            background:none;
+            border:0;
+            color:#71869a;
+            cursor:pointer;
+            font-family:inherit;
+            font-size:.75rem;
+        }
+
+        /* =====================================================
+           MODAL DE ZOOM EM ALTA DEFINIÇÃO
+        ===================================================== */
+
+        .zoom-modal {
+            position:fixed;
+            inset:0;
+            background:rgba(4,7,12,.92);
+            backdrop-filter:blur(8px);
+            z-index:9999;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+            opacity:0;
+            visibility:hidden;
+            transition:.22s ease;
+            padding:20px;
+            box-sizing:border-box;
+        }
+
+        .zoom-modal.active {
+            opacity:1;
+            visibility:visible;
+        }
+
+        .zoom-modal-close {
+            position:absolute;
+            top:20px;
+            right:25px;
+            background:rgba(15,23,32,.8);
+            border:1px solid #243b53;
+            color:#fff;
+            font-size:1.4rem;
+            width:44px;
+            height:44px;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            cursor:pointer;
+            transition:.2s;
+        }
+
+        .zoom-modal-close:hover {
+            color:var(--purple-accent);
+            border-color:var(--purple-accent);
+        }
+
+        .zoom-modal-content {
+            max-width:min(900px, 92vw);
+            max-height:80vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        }
+
+        .zoom-modal-content img {
+            max-width:100%;
+            max-height:78vh;
+            object-fit:contain;
+            border-radius:8px;
+            box-shadow:0 15px 40px rgba(0,0,0,.6);
+            border:1px solid #243b53;
+        }
+
+        .zoom-modal-caption {
+            margin-top:14px;
+            color:#b0c4de;
+            font-size:.9rem;
+            text-align:center;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            gap:4px;
+        }
+
+        .zoom-modal-caption strong {
+            color:#fff;
+            font-size:1.05rem;
+        }
+
+        /* =====================================================
+           TOAST
+        ===================================================== */
+
+        .store-toast {
+            position:fixed;
+            left:50%;
+            bottom:24px;
+            transform:translate(-50%,20px);
+            background:#141e29;
+            border:1px solid var(--purple-accent);
+            color:#fff;
+            border-radius:6px;
+            padding:10px 16px;
+            z-index:6000;
+            opacity:0;
+            visibility:hidden;
+            transition:.22s;
+            font-size:.82rem;
+        }
+
+        .store-toast.active {
+            opacity:1;
+            visibility:visible;
+            transform:translate(-50%,0);
+        }
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            padding:30px 8%;
+            text-align:center;
+            border-top:1px solid #243b53;
+            font-size:.85rem;
+            color:#8da0b3;
+            background:rgba(10,15,22,.95);
+        }
+
+        footer a {
+            color:var(--purple-accent);
+            text-decoration:none;
+        }
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width:768px) {
+
+            .menu-toggle {
+                display:block;
+            }
+
+            .nav-links {
+                display:none;
+                flex-direction:column;
+                position:absolute;
+                top:100%;
+                left:0;
+                width:100%;
+                background:rgba(10,15,22,.98);
+                border-bottom:1px solid #243b53;
+                padding:20px 0;
+                gap:16px;
+                text-align:center;
+                box-shadow:0 10px 20px rgba(0,0,0,.5);
+                z-index:1000;
+            }
+
+            .nav-links.active {
+                display:flex;
+            }
+
+            .store-hero h1 {
+                font-size:1.7rem;
+            }
+
+            .size-chart-box {
+                padding:16px;
+            }
+
+            .product-options {
+                grid-template-columns:1fr 95px;
+            }
+
+            .store-cart-panel {
+                top:0;
+                right:-100%;
+                width:100%;
+                max-width:none;
+                height:100vh;
+                height:100dvh;
+                border-left:none;
+                box-shadow:none;
+            }
+
+            .store-cart-panel.active {
+                right:0;
+            }
+
+            .store-cart-header {
+                padding:16px 18px;
+            }
+
+            .mobile-cart-steps {
+                display:flex;
+                flex:0 0 auto;
+                align-items:center;
+                justify-content:center;
+                gap:9px;
+                padding:10px 15px;
+                border-bottom:1px solid #243b53;
+                background:#0a1017;
+                font-size:.72rem;
+                font-weight:700;
+            }
+
+            .mobile-step {
+                color:#607589;
+                transition:.2s;
+            }
+
+            .mobile-step.active {
+                color:var(--purple-accent);
+            }
+
+            .mobile-step-separator {
+                color:#415365;
+                font-size:.65rem;
+            }
+
+            .cart-step-items {
+                display:flex;
+                flex:1;
+                min-height:0;
+                flex-direction:column;
+            }
+
+            .store-cart-items {
+                flex:1;
+                min-height:0;
+                overflow-y:auto;
+                padding:14px 16px;
+                -webkit-overflow-scrolling:touch;
+            }
+
+            .cart-items-footer {
+                flex:0 0 auto;
+                padding:14px 16px;
+                padding-bottom: calc(14px + env(safe-area-inset-bottom));
+            }
+
+            .mobile-continue-button {
+                display:flex;
+            }
+
+            .cart-step-delivery {
+                display:none;
+                flex:1;
+                min-height:0;
+                overflow-y:auto;
+                border-top:0;
+                padding:18px 16px;
+                padding-bottom: calc(20px + env(safe-area-inset-bottom));
+                -webkit-overflow-scrolling:touch;
+            }
+
+            .store-cart-panel.mobile-delivery-mode .cart-step-items {
+                display:none;
+            }
+
+            .store-cart-panel.mobile-delivery-mode .cart-step-delivery {
+                display:block;
+            }
+
+            .delivery-title {
+                display:block;
+                color:#fff;
+                font-size:.95rem;
+                margin:0 0 14px;
+            }
+
+            .delivery-title i {
+                color:var(--purple-accent);
+                margin-right:6px;
+            }
+
+            .store-customer-fields {
+                grid-template-columns:1fr;
+                gap:9px;
+            }
+
+            .store-customer-field.full,
+            .cep-status {
+                grid-column:auto;
+            }
+
+            .mobile-back-button {
+                display:flex;
+            }
+
+            .store-checkout {
+                margin-top:4px;
+            }
+
+            .store-clear-cart {
+                display:none;
+            }
+
+            .store-toast {
+                bottom: calc(18px + env(safe-area-inset-bottom));
+                width:calc(100% - 40px);
+                box-sizing:border-box;
+                text-align:center;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
+    <div class="logo-text">
+        Ava<span style="color:#b388ff;">Store</span>
+    </div>
+
+    <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Abrir Menu"
+    >
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+
+        <a href="#catalogo" style="color:white;text-decoration:none;">
+            <i class="fa-solid fa-shirt"></i>
+            Modelos
+        </a>
+
+        <a href="#tabela-medidas" style="color:white;text-decoration:none;">
+            <i class="fa-solid fa-ruler-combined"></i>
+            Medidas
+        </a>
+
+        <a
+            href="https://api.whatsapp.com/send?phone=554788714125"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="color:#25D366;text-decoration:none;font-weight:bold;"
+        >
+            <i class="fa-brands fa-whatsapp"></i>
+            WhatsApp
+        </a>
+
+        <a
+            href="#"
+            id="openCartButton"
+            style="color:#b388ff;text-decoration:none;"
+            aria-label="Abrir carrinho"
+        >
+            <i class="fa-solid fa-cart-shopping"></i>
+            Carrinho
+            <span id="cartCount" class="store-cart-count">0</span>
+        </a>
+
+    </nav>
+
+</header>
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="store-hero">
+
+    <span class="badge-drop">
+        <i class="fa-solid fa-tag"></i>
+        Lote 01 // Coleção Exclusiva
+    </span>
+
+    <h1>
+        Arte Própria em Resolução 8K.<br>
+        <span>Estamparia DTF Premium.</span>
+    </h1>
+
+    <p>
+        Estampas 100% originais e autorais. Cada estampa é desenvolvida
+        em altíssima definição 8K e impressa em formato A3 sobre malha
+        nobre catarinense, garantindo durabilidade extrema e fidelidade
+        total de cores.
+    </p>
+
+</section>
+
+<!-- =========================================================
+     PROCESSO
+========================================================= -->
+
+<section class="process-section">
+
+    <div class="process-grid">
+
+        <div class="process-card">
+            <i class="fa-solid fa-palette"></i>
+            <h4>Estampas Autorais em Alta Resolução</h4>
+            <p>
+                Artes autorais exclusivas produzidas em resolução 8K Ultra HD
+                para nitidez total de cores e detalhes.
+            </p>
+        </div>
+
+        <div class="process-card">
+            <i class="fa-solid fa-layer-group"></i>
+            <h4>Impressão DTF Formato A3</h4>
+            <p>
+                Estampa direta no tecido com máxima vivacidade, toque flexível
+                e extrema resistência a lavagens.
+            </p>
+        </div>
+
+        <div class="process-card">
+            <i class="fa-solid fa-gem"></i>
+            <h4>Malha Nobre de Brusque-SC</h4>
+            <p>
+                Camisetas com caimento encorpado e acabamento premium vindas
+                do principal polo têxtil catarinense.
+            </p>
+        </div>
+
+        <div class="process-card">
+            <i class="fa-solid fa-handshake"></i>
+            <h4>Venda Direta Local</h4>
+            <p>
+                Estoque a pronta entrega nas numerações principais e produção
+                sob encomenda para a grade completa.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================================
+     CATÁLOGO
+========================================================= -->
+
+<section id="catalogo" class="catalog-section">
+
+    <div class="catalog-header">
+
+        <h2>
+            <i class="fa-solid fa-shirt"></i>
+            Coleção Disponível
+        </h2>
+
+        <span>
+            Pronta Entrega & Sob Encomenda
+        </span>
+
+    </div>
+
+    <div class="catalog-grid">
+
+        <!-- =================================================
+             CAMISETA 01
+        ================================================= -->
+        <div
+            class="shirt-card"
+            data-id="01"
+            data-name="Cyber Core"
+            data-color="Azul-marinho"
+            data-stock-model="true"
+            data-price="89.90"
+        >
+
+            <div class="shirt-thumb" title="Clique para ampliar detalhes da estampa">
+
+                <span class="tag-exclusive">
+                    Edição Limitada
+                </span>
+
+                <img
+                    src="camiseta01.png"
+                    alt="Camiseta 01 - Cyber Core"
+                    loading="lazy"
+                    decoding="async"
+                    onerror="this.src='https://placehold.co/600x750/141b24/b388ff?text=Camiseta+01'"
+                >
+
+            </div>
+
+            <div class="shirt-content">
+
+                <h3>Camiseta 01: Cyber Core</h3>
+
+                <div class="shirt-price-tag">
+                    R$ 89,90 <small>(P ao GG) · R$ 99,90 (G1 ao G3)</small>
+                </div>
+
+                <p class="desc">
+                    Arte autoral exclusiva com detalhes finos em 8K.
+                    Estampa em formato A3 centralizada no peito.
+                </p>
+
+                <div class="shirt-specs">
+
+                    <div>
+                        <strong>Tecido:</strong>
+                        100% Algodão Nobre (Brusque)
+                    </div>
+
+                    <div>
+                        <strong>Estampa:</strong>
+                        Imagem Própria 8K // DTF A3
+                    </div>
+
+                    <div>
+                        <strong>Pronta Entrega:</strong>
+                        <span class="badge-pronta-entrega">
+                            M, G, GG, G1
+                        </span>
+                    </div>
+
+                    <div>
+                        <strong>Sob Encomenda:</strong>
+                        <span class="badge-encomenda">
+                            P, G2, G3
+                        </span>
+                    </div>
+
+                    <a href="#tabela-medidas" class="btn-size-shortcut">
+                        <i class="fa-solid fa-ruler-combined"></i>
+                        Ver tabela de medidas (cm)
+                    </a>
+
+                </div>
+
+                <div class="product-options">
+
+                    <div class="product-option">
+
+                        <label>Tamanho</label>
+
+                        <select class="product-size">
+                            <option value="P">P</option>
+                            <option value="M" selected>M</option>
+                            <option value="G">G</option>
+                            <option value="GG">GG</option>
+                            <option value="G1">G1</option>
+                            <option value="G2">G2</option>
+                            <option value="G3">G3</option>
+                        </select>
+
+                    </div>
+
+                    <div class="product-option">
+
+                        <label>Qtd.</label>
+
+                        <div class="qty-stepper">
+                            <button type="button" class="qty-btn btn-minus" aria-label="Diminuir quantidade">−</button>
+                            <input class="product-quantity" type="number" value="1" min="1" max="10" readonly>
+                            <button type="button" class="qty-btn btn-plus" aria-label="Aumentar quantidade">+</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="selected-size-status"></div>
+
+                <button type="button" class="btn-add-cart">
+                    <i class="fa-solid fa-cart-plus"></i>
+                    Adicionar ao Carrinho
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- =================================================
+             CAMISETA 02
+        ================================================= -->
+        <div
+            class="shirt-card"
+            data-id="02"
+            data-name="Synth Wave"
+            data-color="Branca"
+            data-stock-model="true"
+            data-price="89.90"
+        >
+
+            <div class="shirt-thumb" title="Clique para ampliar detalhes da estampa">
+
+                <span class="tag-exclusive">
+                    Edição Limitada
+                </span>
+
+                <img
+                    src="camiseta02.png"
+                    alt="Camiseta 02 - Synth Wave"
+                    loading="lazy"
+                    decoding="async"
+                    onerror="this.src='https://placehold.co/600x750/141b24/b388ff?text=Camiseta+02'"
+                >
+
+            </div>
+
+            <div class="shirt-content">
+
+                <h3>Camiseta 02: Synth Wave</h3>
+
+                <div class="shirt-price-tag">
+                    R$ 89,90 <small>(P ao GG) · R$ 99,90 (G1 ao G3)</small>
+                </div>
+
+                <p class="desc">
+                    Cores vivas com fidelidade máxima da tinta têxtil
+                    sobre malha nobre.
+                </p>
+
+                <div class="shirt-specs">
+
+                    <div>
+                        <strong>Tecido:</strong>
+                        100% Algodão Nobre (Brusque)
+                    </div>
+
+                    <div>
+                        <strong>Estampa:</strong>
+                        Imagem Própria 8K // DTF A3
+                    </div>
+
+                    <div>
+                        <strong>Pronta Entrega:</strong>
+                        <span class="badge-pronta-entrega">
+                            M, G, GG, G1
+                        </span>
+                    </div>
+
+                    <div>
+                        <strong>Sob Encomenda:</strong>
+                        <span class="badge-encomenda">
+                            P, G2, G3
+                        </span>
+                    </div>
+
+                    <a href="#tabela-medidas" class="btn-size-shortcut">
+                        <i class="fa-solid fa-ruler-combined"></i>
+                        Ver tabela de medidas (cm)
+                    </a>
+
+                </div>
+
+                <div class="product-options">
+
+                    <div class="product-option">
+
+                        <label>Tamanho</label>
+
+                        <select class="product-size">
+                            <option value="P">P</option>
+                            <option value="M" selected>M</option>
+                            <option value="G">G</option>
+                            <option value="GG">GG</option>
+                            <option value="G1">G1</option>
+                            <option value="G2">G2</option>
+                            <option value="G3">G3</option>
+                        </select>
+
+                    </div>
+
+                    <div class="product-option">
+
+                        <label>Qtd.</label>
+
+                        <div class="qty-stepper">
+                            <button type="button" class="qty-btn btn-minus" aria-label="Diminuir quantidade">−</button>
+                            <input class="product-quantity" type="number" value="1" min="1" max="10" readonly>
+                            <button type="button" class="qty-btn btn-plus" aria-label="Aumentar quantidade">+</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="selected-size-status"></div>
+
+                <button type="button" class="btn-add-cart">
+                    <i class="fa-solid fa-cart-plus"></i>
+                    Adicionar ao Carrinho
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- =================================================
+             CAMISETA 03
+        ================================================= -->
+        <div
+            class="shirt-card"
+            data-id="03"
+            data-name="Neural Shift"
+            data-color="Azul-marinho"
+            data-stock-model="true"
+            data-price="89.90"
+        >
+
+            <div class="shirt-thumb" title="Clique para ampliar detalhes da estampa">
+
+                <span class="tag-exclusive">
+                    Edição Limitada
+                </span>
+
+                <img
+                    src="camiseta03.png"
+                    alt="Camiseta 03 - Neural Shift"
+                    loading="lazy"
+                    decoding="async"
+                    onerror="this.src='https://placehold.co/600x750/141b24/b388ff?text=Camiseta+03'"
+                >
+
+            </div>
+
+            <div class="shirt-content">
+
+                <h3>Camiseta 03: Neural Shift</h3>
+
+                <div class="shirt-price-tag">
+                    R$ 89,90 <small>(P ao GG) · R$ 99,90 (G1 ao G3)</small>
+                </div>
+
+                <p class="desc">
+                    Composição própria com estética contemporânea
+                    em altíssima definição gráfica.
+                </p>
+
+                <div class="shirt-specs">
+
+                    <div>
+                        <strong>Tecido:</strong>
+                        100% Algodão Nobre (Brusque)
+                    </div>
+
+                    <div>
+                        <strong>Estampa:</strong>
+                        Imagem Própria 8K // DTF A3
+                    </div>
+
+                    <div>
+                        <strong>Pronta Entrega:</strong>
+                        <span class="badge-pronta-entrega">
+                            M, G, GG, G1
+                        </span>
+                    </div>
+
+                    <div>
+                        <strong>Sob Encomenda:</strong>
+                        <span class="badge-encomenda">
+                            P, G2, G3
+                        </span>
+                    </div>
+
+                    <a href="#tabela-medidas" class="btn-size-shortcut">
+                        <i class="fa-solid fa-ruler-combined"></i>
+                        Ver tabela de medidas (cm)
+                    </a>
+
+                </div>
+
+                <div class="product-options">
+
+                    <div class="product-option">
+
+                        <label>Tamanho</label>
+
+                        <select class="product-size">
+                            <option value="P">P</option>
+                            <option value="M" selected>M</option>
+                            <option value="G">G</option>
+                            <option value="GG">GG</option>
+                            <option value="G1">G1</option>
+                            <option value="G2">G2</option>
+                            <option value="G3">G3</option>
+                        </select>
+
+                    </div>
+
+                    <div class="product-option">
+
+                        <label>Qtd.</label>
+
+                        <div class="qty-stepper">
+                            <button type="button" class="qty-btn btn-minus" aria-label="Diminuir quantidade">−</button>
+                            <input class="product-quantity" type="number" value="1" min="1" max="10" readonly>
+                            <button type="button" class="qty-btn btn-plus" aria-label="Aumentar quantidade">+</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="selected-size-status"></div>
+
+                <button type="button" class="btn-add-cart">
+                    <i class="fa-solid fa-cart-plus"></i>
+                    Adicionar ao Carrinho
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- =================================================
+             CAMISETA 04
+        ================================================= -->
+        <div
+            class="shirt-card"
+            data-id="04"
+            data-name="Dark Horizon"
+            data-color="Preta"
+            data-stock-model="true"
+            data-price="89.90"
+        >
+
+            <div class="shirt-thumb" title="Clique para ampliar detalhes da estampa">
+
+                <span class="tag-exclusive">
+                    Edição Limitada
+                </span>
+
+                <img
+                    src="camiseta04.png"
+                    alt="Camiseta 04 - Dark Horizon"
+                    loading="lazy"
+                    decoding="async"
+                    onerror="this.src='https://placehold.co/600x750/141b24/b388ff?text=Camiseta+04'"
+                >
+
+            </div>
+
+            <div class="shirt-content">
+
+                <h3>Camiseta 04: Dark Horizon</h3>
+
+                <div class="shirt-price-tag">
+                    R$ 89,90 <small>(P ao GG) · R$ 99,90 (G1 ao G3)</small>
+                </div>
+
+                <p class="desc">
+                    Contraste marcante, recorte visual limpo
+                    e toque macio que não craquela.
+                </p>
+
+                <div class="shirt-specs">
+
+                    <div>
+                        <strong>Tecido:</strong>
+                        100% Algodão Nobre (Brusque)
+                    </div>
+
+                    <div>
+                        <strong>Estampa:</strong>
+                        Imagem Própria 8K // DTF A3
+                    </div>
+
+                    <div>
+                        <strong>Pronta Entrega:</strong>
+                        <span class="badge-pronta-entrega">
+                            M, G, GG, G1
+                        </span>
+                    </div>
+
+                    <div>
+                        <strong>Sob Encomenda:</strong>
+                        <span class="badge-encomenda">
+                            P, G2, G3
+                        </span>
+                    </div>
+
+                    <a href="#tabela-medidas" class="btn-size-shortcut">
+                        <i class="fa-solid fa-ruler-combined"></i>
+                        Ver tabela de medidas (cm)
+                    </a>
+
+                </div>
+
+                <div class="product-options">
+
+                    <div class="product-option">
+
+                        <label>Tamanho</label>
+
+                        <select class="product-size">
+                            <option value="P">P</option>
+                            <option value="M" selected>M</option>
+                            <option value="G">G</option>
+                            <option value="GG">GG</option>
+                            <option value="G1">G1</option>
+                            <option value="G2">G2</option>
+                            <option value="G3">G3</option>
+                        </select>
+
+                    </div>
+
+                    <div class="product-option">
+
+                        <label>Qtd.</label>
+
+                        <div class="qty-stepper">
+                            <button type="button" class="qty-btn btn-minus" aria-label="Diminuir quantidade">−</button>
+                            <input class="product-quantity" type="number" value="1" min="1" max="10" readonly>
+                            <button type="button" class="qty-btn btn-plus" aria-label="Aumentar quantidade">+</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="selected-size-status"></div>
+
+                <button type="button" class="btn-add-cart">
+                    <i class="fa-solid fa-cart-plus"></i>
+                    Adicionar ao Carrinho
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- =================================================
+             CAMISETA 05
+        ================================================= -->
+        <div
+            class="shirt-card"
+            data-id="05"
+            data-name="Mono Abstract"
+            data-color="Preta"
+            data-stock-model="true"
+            data-price="89.90"
+        >
+
+            <div class="shirt-thumb" title="Clique para ampliar detalhes da estampa">
+
+                <span class="tag-exclusive">
+                    Edição Limitada
+                </span>
+
+                <img
+                    src="camiseta05.png"
+                    alt="Camiseta 05 - Mono Abstract"
+                    loading="lazy"
+                    decoding="async"
+                    onerror="this.src='https://placehold.co/600x750/141b24/b388ff?text=Camiseta+05'"
+                >
+
+            </div>
+
+            <div class="shirt-content">
+
+                <h3>Camiseta 05: Mono Abstract</h3>
+
+                <div class="shirt-price-tag">
+                    R$ 89,90 <small>(P ao GG) · R$ 99,90 (G1 ao G3)</small>
+                </div>
+
+                <p class="desc">
+                    Design visual arrojado em grande formato
+                    de estampa com resolução cristalina.
+                </p>
+
+                <div class="shirt-specs">
+
+                    <div>
+                        <strong>Tecido:</strong>
+                        100% Algodão Nobre (Brusque)
+                    </div>
+
+                    <div>
+                        <strong>Estampa:</strong>
+                        Imagem Própria 8K // DTF A3
+                    </div>
+
+                    <div>
+                        <strong>Pronta Entrega:</strong>
+                        <span class="badge-pronta-entrega">
+                            M, G, GG, G1
+                        </span>
+                    </div>
+
+                    <div>
+                        <strong>Sob Encomenda:</strong>
+                        <span class="badge-encomenda">
+                            P, G2, G3
+                        </span>
+                    </div>
+
+                    <a href="#tabela-medidas" class="btn-size-shortcut">
+                        <i class="fa-solid fa-ruler-combined"></i>
+                        Ver tabela de medidas (cm)
+                    </a>
+
+                </div>
+
+                <div class="product-options">
+
+                    <div class="product-option">
+
+                        <label>Tamanho</label>
+
+                        <select class="product-size">
+                            <option value="P">P</option>
+                            <option value="M" selected>M</option>
+                            <option value="G">G</option>
+                            <option value="GG">GG</option>
+                            <option value="G1">G1</option>
+                            <option value="G2">G2</option>
+                            <option value="G3">G3</option>
+                        </select>
+
+                    </div>
+
+                    <div class="product-option">
+
+                        <label>Qtd.</label>
+
+                        <div class="qty-stepper">
+                            <button type="button" class="qty-btn btn-minus" aria-label="Diminuir quantidade">−</button>
+                            <input class="product-quantity" type="number" value="1" min="1" max="10" readonly>
+                            <button type="button" class="qty-btn btn-plus" aria-label="Aumentar quantidade">+</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="selected-size-status"></div>
+
+                <button type="button" class="btn-add-cart">
+                    <i class="fa-solid fa-cart-plus"></i>
+                    Adicionar ao Carrinho
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- =================================================
+             CAMISETA 06
+        ================================================= -->
+        <div
+            class="shirt-card"
+            data-id="06"
+            data-name="Maverick 1975"
+            data-color="Preta"
+            data-stock-model="false"
+            data-price="89.90"
+        >
+
+            <div class="shirt-thumb" title="Clique para ampliar detalhes da estampa">
+
+                <span class="tag-exclusive">
+                    Nova Estampa
+                </span>
+
+                <img
+                    src="camiseta06.png"
+                    alt="Camiseta 06 - Maverick 1975"
+                    loading="lazy"
+                    decoding="async"
+                    onerror="this.src='https://placehold.co/600x750/141b24/b388ff?text=Camiseta+06'"
+                >
+
+            </div>
+
+            <div class="shirt-content">
+
+                <h3>Camiseta 06: Maverick 1975</h3>
+
+                <div class="shirt-price-tag">
+                    R$ 89,90 <small>(P ao GG) · R$ 99,90 (G1 ao G3)</small>
+                </div>
+
+                <p class="desc">
+                    Estampa autoral com inspiração automotiva clássica,
+                    preparada em alta definição para aplicação DTF A3
+                    sobre camiseta preta.
+                </p>
+
+                <div class="shirt-specs">
+
+                    <div>
+                        <strong>Tecido:</strong>
+                        100% Algodão Nobre (Brusque)
+                    </div>
+
+                    <div>
+                        <strong>Estampa:</strong>
+                        Imagem Própria 8K // DTF A3
+                    </div>
+
+                    <div>
+                        <strong>Disponibilidade:</strong>
+                        <span class="badge-encomenda">
+                            Sob Encomenda
+                        </span>
+                    </div>
+
+                    <div>
+                        <strong>Tamanhos:</strong>
+                        P, M, G, GG, G1, G2, G3
+                    </div>
+
+                    <a href="#tabela-medidas" class="btn-size-shortcut">
+                        <i class="fa-solid fa-ruler-combined"></i>
+                        Ver tabela de medidas (cm)
+                    </a>
+
+                </div>
+
+                <div class="product-options">
+
+                    <div class="product-option">
+
+                        <label>Tamanho</label>
+
+                        <select class="product-size">
+                            <option value="P" selected>P</option>
+                            <option value="M">M</option>
+                            <option value="G">G</option>
+                            <option value="GG">GG</option>
+                            <option value="G1">G1</option>
+                            <option value="G2">G2</option>
+                            <option value="G3">G3</option>
+                        </select>
+
+                    </div>
+
+                    <div class="product-option">
+
+                        <label>Qtd.</label>
+
+                        <div class="qty-stepper">
+                            <button type="button" class="qty-btn btn-minus" aria-label="Diminuir quantidade">−</button>
+                            <input class="product-quantity" type="number" value="1" min="1" max="10" readonly>
+                            <button type="button" class="qty-btn btn-plus" aria-label="Aumentar quantidade">+</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="selected-size-status"></div>
+
+                <button type="button" class="btn-add-cart">
+                    <i class="fa-solid fa-cart-plus"></i>
+                    Adicionar ao Carrinho
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- =================================================
+             CAMISETA 07
+        ================================================= -->
+        <div
+            class="shirt-card"
+            data-id="07"
+            data-name="Gato"
+            data-color="Preta"
+            data-stock-model="false"
+            data-price="89.90"
+        >
+
+            <div class="shirt-thumb" title="Clique para ampliar detalhes da estampa">
+
+                <span class="tag-exclusive">
+                    Nova Estampa
+                </span>
+
+                <img
+                    src="camiseta07.png"
+                    alt="Camiseta 07 - Gato"
+                    loading="lazy"
+                    decoding="async"
+                    onerror="this.src='https://placehold.co/600x750/141b24/b388ff?text=Camiseta+07'"
+                >
+
+            </div>
+
+            <div class="shirt-content">
+
+                <h3>Camiseta 07: Gato</h3>
+
+                <div class="shirt-price-tag">
+                    R$ 89,90 <small>(P ao GG) · R$ 99,90 (G1 ao G3)</small>
+                </div>
+
+                <p class="desc">
+                    Estampa felina autoral em alta definição,
+                    desenvolvida para impressão DTF A3 sobre camiseta preta.
+                </p>
+
+                <div class="shirt-specs">
+
+                    <div>
+                        <strong>Tecido:</strong>
+                        100% Algodão Nobre (Brusque)
+                    </div>
+
+                    <div>
+                        <strong>Estampa:</strong>
+                        Imagem Própria 8K // DTF A3
+                    </div>
+
+                    <div>
+                        <strong>Disponibilidade:</strong>
+                        <span class="badge-encomenda">
+                            Sob Encomenda
+                        </span>
+                    </div>
+
+                    <div>
+                        <strong>Tamanhos:</strong>
+                        P, M, G, GG, G1, G2, G3
+                    </div>
+
+                    <a href="#tabela-medidas" class="btn-size-shortcut">
+                        <i class="fa-solid fa-ruler-combined"></i>
+                        Ver tabela de medidas (cm)
+                    </a>
+
+                </div>
+
+                <div class="product-options">
+
+                    <div class="product-option">
+
+                        <label>Tamanho</label>
+
+                        <select class="product-size">
+                            <option value="P" selected>P</option>
+                            <option value="M">M</option>
+                            <option value="G">G</option>
+                            <option value="GG">GG</option>
+                            <option value="G1">G1</option>
+                            <option value="G2">G2</option>
+                            <option value="G3">G3</option>
+                        </select>
+
+                    </div>
+
+                    <div class="product-option">
+
+                        <label>Qtd.</label>
+
+                        <div class="qty-stepper">
+                            <button type="button" class="qty-btn btn-minus" aria-label="Diminuir quantidade">−</button>
+                            <input class="product-quantity" type="number" value="1" min="1" max="10" readonly>
+                            <button type="button" class="qty-btn btn-plus" aria-label="Aumentar quantidade">+</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="selected-size-status"></div>
+
+                <button type="button" class="btn-add-cart">
+                    <i class="fa-solid fa-cart-plus"></i>
+                    Adicionar ao Carrinho
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================================
+     ACESSO À PERSONALIZAÇÃO (APÓS O CATÁLOGO)
+========================================================= -->
+<section aria-label="Personalização de camisetas" style="max-width:1100px;margin:0 auto 44px;padding:0 20px;">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;padding:26px 28px;background:#121b2a;border:1px solid #39405b;border-radius:12px;">
+        <div style="display:flex;align-items:flex-start;gap:15px;flex:1 1 270px;">
+            <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true" style="font-size:1.6rem;color:#b58aff;margin-top:3px;"></i>
+            <div>
+                <h2 style="margin:0 0 8px;color:#fff;font-size:1.3rem;">Quer criar sua própria camiseta?</h2>
+                <p style="margin:0;color:#b6c6db;line-height:1.6;font-size:.92rem;">Escolha a cor, a estampa e o posicionamento do seu jeito. Personalização feita sob encomenda.</p>
+            </div>
+        </div>
+        <button type="button" class="btn-open-customizer" id="btnOpenCustomizer" style="background:#a989ff;color:#10101a;box-shadow:none;margin-top:0;justify-content:center;flex:0 1 auto;max-width:100%;white-space:normal;text-align:center;">
+            <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Personalizar minha camiseta
+        </button>
+    </div>
+</section>
+
+<!-- =========================================================
+     TABELA DE MEDIDAS
+========================================================= -->
+
+<section id="tabela-medidas" class="size-chart-section">
+
+    <div class="size-chart-box">
+
+        <div class="size-chart-header">
+
+            <h3>
+                <i class="fa-solid fa-ruler-combined"></i>
+                Guia Completo de Medição
+            </h3>
+
+            <p>
+                Compare as medidas com uma camiseta sua estendida
+                para escolher o tamanho ideal.
+            </p>
+
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="size-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Tamanho</th>
+                        <th>A — Comprimento</th>
+                        <th>B — Largura</th>
+                        <th>C — Manga</th>
+                        <th>Status de Envio</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>P</strong></td>
+                        <td>65 cm</td>
+                        <td>50 cm</td>
+                        <td>16 cm</td>
+                        <td>
+                            <span class="tag-row-encomenda">
+                                Sob Encomenda
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>M</strong></td>
+                        <td>68 cm</td>
+                        <td>52 cm</td>
+                        <td>18 cm</td>
+                        <td>
+                            <span class="tag-row-pronta">
+                                Pronta Entrega
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>G</strong></td>
+                        <td>70 cm</td>
+                        <td>56 cm</td>
+                        <td>18 cm</td>
+                        <td>
+                            <span class="tag-row-pronta">
+                                Pronta Entrega
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>GG</strong></td>
+                        <td>72 cm</td>
+                        <td>58 cm</td>
+                        <td>19 cm</td>
+                        <td>
+                            <span class="tag-row-pronta">
+                                Pronta Entrega
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>G1</strong></td>
+                        <td>75 cm</td>
+                        <td>59 cm</td>
+                        <td>22 cm</td>
+                        <td>
+                            <span class="tag-row-pronta">
+                                Pronta Entrega
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>G2</strong></td>
+                        <td>77 cm</td>
+                        <td>62 cm</td>
+                        <td>23 cm</td>
+                        <td>
+                            <span class="tag-row-encomenda">
+                                Sob Encomenda
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>G3</strong></td>
+                        <td>79 cm</td>
+                        <td>65 cm</td>
+                        <td>24 cm</td>
+                        <td>
+                            <span class="tag-row-encomenda">
+                                Sob Encomenda
+                            </span>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="table-footer-info">
+
+            <span>
+                * As medições podem ter variações mínimas de costura.
+            </span>
+
+            <span>
+                Qualquer modelo pode ser produzido sob encomenda no seu tamanho.
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <p>
+        © 2026 Ava Store — camisetasava.com
+    </p>
+
+    <p style="margin-top:4px;font-size:.76rem;color:#5a6e85;">
+        Malha nobre de Brusque / SC •
+        Estamparia Digital DTF A3 de Longa Durabilidade
+    </p>
+
+</footer>
+
+<!-- =========================================================
+     OVERLAY
+========================================================= -->
+
+<div
+    class="store-cart-overlay"
+    id="cartOverlay"
+></div>
+
+<!-- =========================================================
+     CARRINHO
+========================================================= -->
+
+<aside
+    class="store-cart-panel"
+    id="cartPanel"
+>
+
+    <!-- CABEÇALHO -->
+
+    <div class="store-cart-header">
+
+        <h3>
+            <i class="fa-solid fa-cart-shopping"></i>
+            Seu Carrinho
+        </h3>
+
+        <button
+            type="button"
+            class="store-cart-close"
+            id="closeCartButton"
+            aria-label="Fechar carrinho"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+    </div>
+
+    <!-- INDICADOR MOBILE -->
+
+    <div class="mobile-cart-steps">
+
+        <span
+            class="mobile-step active"
+            id="mobileStepCart"
+        >
+            <i class="fa-solid fa-cart-shopping"></i>
+            Carrinho
+        </span>
+
+        <span class="mobile-step-separator">
+            <i class="fa-solid fa-chevron-right"></i>
+        </span>
+
+        <span
+            class="mobile-step"
+            id="mobileStepDelivery"
+        >
+            <i class="fa-solid fa-location-dot"></i>
+            Entrega
+        </span>
+
+    </div>
+
+    <!-- ETAPA 1 - CARRINHO -->
+
+    <div
+        class="cart-step-items"
+        id="cartStepItems"
+    >
+
+        <div
+            class="store-cart-items"
+            id="cartItems"
+        ></div>
+
+        <div class="cart-items-footer">
+
+            <div class="store-cart-total">
+
+                <span>
+                    Quantidade total
+                </span>
+
+                <strong id="cartTotal">
+                    0 camiseta(s)
+                </strong>
+
+            </div>
+
+            <div class="store-cart-subtotal">
+
+                <span>
+                    Subtotal estimado
+                </span>
+
+                <strong id="cartSubtotal" style="color:var(--purple-accent);">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+
+            <!-- Frete: estrutura pronta para modalidades futuras -->
+            <div class="store-cart-subtotal" style="align-items:center;gap:12px;">
+                <label for="shippingMethod">Frete</label>
+                <select id="shippingMethod" aria-label="Modalidade de frete" style="max-width:240px;width:100%;background:#0d1622;color:#fff;border:1px solid #34455e;border-radius:7px;padding:9px;">
+                    <option value="seller" selected>A combinar com o vendedor</option>
+                </select>
+            </div>
+            <p style="color:#9fb0c5;font-size:.78rem;margin:5px 0 14px;">Frete calculado e confirmado pelo WhatsApp. Não incluído no subtotal.</p>
+
+            <button
+                type="button"
+                class="mobile-continue-button"
+                id="continueToDeliveryButton"
+            >
+                Continuar para Entrega
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <button
+                type="button"
+                class="store-clear-cart"
+                id="clearCartButton"
+            >
+                Esvaziar carrinho
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ETAPA 2 - ENDEREÇO -->
+
+    <div
+        class="cart-step-delivery"
+        id="cartStepDelivery"
+    >
+
+        <h4 class="delivery-title">
+            <i class="fa-solid fa-location-dot"></i>
+            Dados para Entrega
+        </h4>
+
+        <div class="store-customer-fields">
+
+            <div class="store-customer-field full">
+
+                <input
+                    type="text"
+                    id="customerName"
+                    placeholder="Nome completo"
+                    autocomplete="name"
+                >
+
+            </div>
+
+            <div class="store-customer-field full">
+
+                <input
+                    type="text"
+                    id="customerCep"
+                    placeholder="CEP"
+                    inputmode="numeric"
+                    autocomplete="postal-code"
+                    maxlength="9"
+                >
+
+            </div>
+
+            <div
+                class="cep-status"
+                id="cepStatus"
+                aria-live="polite"
+            ></div>
+
+            <div class="store-customer-field full">
+
+                <input
+                    type="text"
+                    id="customerStreet"
+                    placeholder="Rua / Logradouro"
+                    autocomplete="address-line1"
+                >
+
+            </div>
+
+            <div class="store-customer-field">
+
+                <input
+                    type="text"
+                    id="customerNumber"
+                    placeholder="Número"
+                >
+
+            </div>
+
+            <div class="store-customer-field">
+
+                <input
+                    type="text"
+                    id="customerNeighborhood"
+                    placeholder="Bairro"
+                >
+
+            </div>
+
+            <div class="store-customer-field">
+
+                <input
+                    type="text"
+                    id="customerCity"
+                    placeholder="Cidade"
+                    autocomplete="address-level2"
+                >
+
+            </div>
+
+            <div class="store-customer-field">
+
+                <input
+                    type="text"
+                    id="customerState"
+                    placeholder="UF"
+                    autocomplete="address-level1"
+                    maxlength="2"
+                >
+
+            </div>
+
+            <div class="store-customer-field full">
+
+                <input
+                    type="text"
+                    id="customerComplement"
+                    placeholder="Bloco / Apto / Complemento (opcional)"
+                >
+
+            </div>
+
+        </div>
+
+        <button
+            type="button"
+            class="mobile-back-button"
+            id="backToCartButton"
+        >
+            <i class="fa-solid fa-arrow-left"></i>
+            Voltar ao Carrinho
+        </button>
+
+        <button
+            type="button"
+            class="store-checkout"
+            id="checkoutButton"
+        >
+            <i class="fa-brands fa-whatsapp"></i>
+            Finalizar pedido no WhatsApp
+        </button>
+
+    </div>
+
+</aside>
+
+<!-- =========================================================
+     MODAL DE ZOOM EM ALTA DEFINIÇÃO
+========================================================= -->
+
+<div class="zoom-modal" id="zoomModal" role="dialog" aria-modal="true" aria-label="Visualização em Alta Definição">
+    <button type="button" class="zoom-modal-close" id="zoomModalClose" aria-label="Fechar zoom">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="zoom-modal-content">
+        <img id="zoomModalImage" src="" alt="Estampa em alta resolução">
+    </div>
+    <div class="zoom-modal-caption" id="zoomModalCaption"></div>
+</div>
+
+<!-- =========================================================
+     MODAL DO PERSONALIZADOR
+========================================================= -->
+
+<div class="custom-modal" id="customModal" role="dialog" aria-modal="true" aria-label="Personalize sua camiseta">
+    <div class="custom-modal-dialog">
+        <div class="custom-modal-header">
+            <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Monte sua Camiseta Sob Encomenda</h3>
+            <button type="button" class="custom-modal-close" id="btnCloseCustomizer" aria-label="Fechar">&times;</button>
+        </div>
+
+        <div class="custom-modal-body">
+            <div class="custom-notice-badge">
+                <i class="fa-solid fa-clock"></i>
+                <span><strong>Sob Encomenda:</strong> Produção e estamparia DTF em até 49,5 cm de largura. Prazo de confecção: 3 a 5 dias úteis.</span>
+            </div>
+
+            <!-- Coluna Visual: Palco da Camiseta -->
+            <div>
+                <div class="custom-view-toggle">
+                    <button type="button" class="btn-toggle-view active" data-view="front">Frente</button>
+                    <button type="button" class="btn-toggle-view" data-view="back">Costas</button>
+                </div>
+
+                <div class="custom-stage" id="customStage">
+                    <img id="customMockupBase" class="custom-stage-bg" src="custom/camisetas/preto-frente.png" alt="Camiseta Base" onerror="this.src='camiseta04.png'">
+                    
+                    <div class="custom-print-box" id="customPrintBox">
+                        <div class="custom-placed-art" id="customPlacedArt">
+                            <img id="customArtImg" src="custom/estampas/estampa01.png" alt="Estampa Prévia" onerror="this.src='camiseta01.png'">
+                        </div>
+                    </div>
+                </div>
+                <small style="display:block; text-align:center; color:var(--text-muted); margin-top:6px; font-size:0.75rem;">
+                    <i class="fa-solid fa-arrows-up-down-left-right"></i> Arraste a imagem para definir a posição
+                </small>
+            </div>
+
+            <!-- Coluna de Controles -->
+            <div class="custom-settings">
+                <!-- 1. Paleta de Cores (23 Cores do Catálogo) -->
+                <div class="custom-field">
+                    <label>1. Escolha a Cor: <span id="lblSelectedColor" style="color:var(--cyan-accent, #00e5ff); text-transform:none; font-weight:800;">Preto</span></label>
+                    <div class="custom-color-swatches" id="swatchesContainer">
+                        <button type="button" class="swatch-btn active" data-color="Preto" data-front="custom/camisetas/preto-frente.png" data-back="custom/camisetas/preto-costas.png" style="background:#111111;" title="Preto"></button>
+                        <button type="button" class="swatch-btn" data-color="Branco" data-front="custom/camisetas/branco-frente.png" data-back="custom/camisetas/branco-costas.png" style="background:#ffffff;" title="Branco"></button>
+                        <button type="button" class="swatch-btn" data-color="Off White" data-front="custom/camisetas/offwhite-frente.png" data-back="custom/camisetas/offwhite-costas.png" style="background:#f7f2e7;" title="Off White"></button>
+                        <button type="button" class="swatch-btn" data-color="Mescla" data-front="custom/camisetas/mescla-frente.png" data-back="custom/camisetas/mescla-costas.png" style="background:#d1d5db;" title="Mescla"></button>
+                        <button type="button" class="swatch-btn" data-color="Chumbo" data-front="custom/camisetas/chumbo-frente.png" data-back="custom/camisetas/chumbo-costas.png" style="background:#55595f;" title="Chumbo"></button>
+                        <button type="button" class="swatch-btn" data-color="Marinho" data-front="custom/camisetas/marinho-frente.png" data-back="custom/camisetas/marinho-costas.png" style="background:#1b325f;" title="Marinho"></button>
+                        <button type="button" class="swatch-btn" data-color="Royal" data-front="custom/camisetas/royal-frente.png" data-back="custom/camisetas/royal-costas.png" style="background:#124ce3;" title="Royal"></button>
+                        <button type="button" class="swatch-btn" data-color="Turquesa" data-front="custom/camisetas/turquesa-frente.png" data-back="custom/camisetas/turquesa-costas.png" style="background:#00c5eb;" title="Turquesa"></button>
+                        <button type="button" class="swatch-btn" data-color="Azul Claro" data-front="custom/camisetas/azulclaro-frente.png" data-back="custom/camisetas/azulclaro-costas.png" style="background:#b8e2f2;" title="Azul Claro"></button>
+                        <button type="button" class="swatch-btn" data-color="Verde Água" data-front="custom/camisetas/verdeagua-frente.png" data-back="custom/camisetas/verdeagua-costas.png" style="background:#c8ede7;" title="Verde Água"></button>
+                        <button type="button" class="swatch-btn" data-color="Verde Bandeira" data-front="custom/camisetas/verdebandeira-frente.png" data-back="custom/camisetas/verdebandeira-costas.png" style="background:#13933c;" title="Verde Bandeira"></button>
+                        <button type="button" class="swatch-btn" data-color="Militar" data-front="custom/camisetas/militar-frente.png" data-back="custom/camisetas/militar-costas.png" style="background:#3d5e4a;" title="Militar"></button>
+                        <button type="button" class="swatch-btn" data-color="Amarelo" data-front="custom/camisetas/amarelo-frente.png" data-back="custom/camisetas/amarelo-costas.png" style="background:#ffc700;" title="Amarelo"></button>
+                        <button type="button" class="swatch-btn" data-color="Amarelo Claro" data-front="custom/camisetas/amareloclaro-frente.png" data-back="custom/camisetas/amareloclaro-costas.png" style="background:#fff099;" title="Amarelo Claro"></button>
+                        <button type="button" class="swatch-btn" data-color="Laranja" data-front="custom/camisetas/laranja-frente.png" data-back="custom/camisetas/laranja-costas.png" style="background:#f36422;" title="Laranja"></button>
+                        <button type="button" class="swatch-btn" data-color="Coral" data-front="custom/camisetas/coral-frente.png" data-back="custom/camisetas/coral-costas.png" style="background:#f6947b;" title="Coral"></button>
+                        <button type="button" class="swatch-btn" data-color="Vermelho" data-front="custom/camisetas/vermelho-frente.png" data-back="custom/camisetas/vermelho-costas.png" style="background:#d81e28;" title="Vermelho"></button>
+                        <button type="button" class="swatch-btn" data-color="Bordô" data-front="custom/camisetas/bordo-frente.png" data-back="custom/camisetas/bordo-costas.png" style="background:#872033;" title="Bordô"></button>
+                        <button type="button" class="swatch-btn" data-color="Roxo" data-front="custom/camisetas/roxo-frente.png" data-back="custom/camisetas/roxo-costas.png" style="background:#863b7c;" title="Roxo"></button>
+                        <button type="button" class="swatch-btn" data-color="Chiclete" data-front="custom/camisetas/chiclete-frente.png" data-back="custom/camisetas/chiclete-costas.png" style="background:#f7b2cb;" title="Chiclete"></button>
+                        <button type="button" class="swatch-btn" data-color="Pink" data-front="custom/camisetas/pink-frente.png" data-back="custom/camisetas/pink-costas.png" style="background:#ee3f8e;" title="Pink"></button>
+                        <button type="button" class="swatch-btn" data-color="Marrom" data-front="custom/camisetas/marrom-frente.png" data-back="custom/camisetas/marrom-costas.png" style="background:#693b2b;" title="Marrom"></button>
+                        <button type="button" class="swatch-btn" data-color="Areia" data-front="custom/camisetas/areia-frente.png" data-back="custom/camisetas/areia-costas.png" style="background:#c1ab94;" title="Areia"></button>
+                    </div>
+                </div>
+
+                <!-- 2. Tamanho -->
+                <div class="custom-field">
+                    <label>2. Tamanho da Camiseta — <span id="customSizePrice">R$ 104,90</span></label>
+                    <select id="customSelectedSize">
+                        <option value="P">P</option>
+                        <option value="M" selected>M</option>
+                        <option value="G">G</option>
+                        <option value="GG">GG</option>
+                        <option value="G1">G1</option>
+                        <option value="G2">G2</option>
+                        <option value="G3">G3</option>
+                    </select>
+                </div>
+
+                <!-- 3. Escolha da Estampa -->
+                <div class="custom-field">
+                    <label>3. Escolha a Estampa</label>
+                    <select id="customDesignSelect">
+                        <option value="custom/estampas/estampa01.png" data-name="Cyber Core">01: Cyber Core</option>
+                        <option value="custom/estampas/estampa02.png" data-name="Synth Wave">02: Synth Wave</option>
+                        <option value="custom/estampas/estampa03.png" data-name="Neural Shift">03: Neural Shift</option>
+                        <option value="custom/estampas/estampa04.png" data-name="Dark Horizon">04: Dark Horizon</option>
+                        <option value="custom/estampas/estampa05.png" data-name="Mono Abstract">05: Mono Abstract</option>
+                        <option value="custom/estampas/estampa06.png" data-name="Maverick 1975">06: Maverick 1975</option>
+                        <option value="custom/estampas/estampa07.png" data-name="Gato">07: Gato</option>
+                        <option value="custom_upload">-- Enviar Minha Imagem / Logo --</option>
+                    </select>
+                    <input type="file" id="customArtUpload" accept="image/*" style="display:none; margin-top:8px;">
+                </div>
+
+                <!-- 4. Tamanho Visual da Estampa (Pequeno, Médio, Grande) com min=7 e max=17 -->
+                <div class="custom-field">
+                    <label>4. Tamanho da Estampa: <span id="lblArtSizeText" style="color:var(--cyan-accent, #00e5ff); text-transform:none; font-weight:800;">Médio</span></label>
+                    <div class="slider-group">
+                        <input type="range" id="sliderArtWidth" min="5" max="12" step="0.5" value="12">
+                    </div>
+                    <div style="display:flex; justify-content:space-between; color:var(--text-muted); font-size:0.7rem; margin-top:4px;">
+                        <span>Pequeno</span>
+                        <span>Médio</span>
+                        <span>Grande</span>
+                    </div>
+                </div>
+
+                <button type="button" class="btn" id="btnConfirmCustomItem" style="margin-top:10px; width:100%; border:none; cursor:pointer;">
+                    <i class="fa-solid fa-cart-plus"></i> Adicionar Personalizada ao Carrinho
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div
+    class="store-toast"
+    id="storeToast"
+>
+    Produto adicionado ao carrinho.
+</div>
+
+<!-- =========================================================
+     JAVASCRIPT COMPLETO E INTEGRADO
+========================================================= -->
+
+<script src="script.js" defer></script>
+
+<!-- =========================================================
+     MENU MOBILE
+========================================================= -->
+
+<script>
+
+    const navLinks =
+        document.getElementById("navLinks");
+
+    const menuToggle =
+        document.getElementById("menuToggle");
+
+    const headerEl =
+        document.querySelector("header");
+
+    function toggleMenu() {
+        navLinks.classList.toggle("active");
+    }
+
+    function closeMenu() {
+        navLinks.classList.remove("active");
+    }
+
+    menuToggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        toggleMenu();
+    });
+
+    navLinks.querySelectorAll("a:not(#openCartButton)").forEach(function (link) {
+        link.addEventListener("click", function () {
+            closeMenu();
+        });
+    });
+
+    function handleOutsideClick(e) {
+        if (
+            navLinks.classList.contains("active") &&
+            !headerEl.contains(e.target)
+        ) {
+            closeMenu();
+        }
+    }
+
+    document.addEventListener("click", handleOutsideClick);
+    document.addEventListener("touchstart", handleOutsideClick, { passive: true });
+
+</script>
+
+<!-- =========================================================
+     TAWK.TO
+========================================================= -->
+
+<script type="text/javascript">
+
+    var Tawk_API =
+        Tawk_API || {};
+
+    var Tawk_LoadStart =
+        new Date();
+
+    (function () {
+
+        var s1 =
+            document.createElement(
+                "script"
+            );
+
+        var s0 =
+            document.getElementsByTagName(
+                "script"
+            )[0];
+
+        s1.async =
+            true;
+
+        s1.src =
+            "https://embed.tawk.to/6a8e80e77f08c0344498aca5/1k0uaf2bu";
+
+        s1.charset =
+            "UTF-8";
+
+        s1.setAttribute(
+            "crossorigin",
+            "*"
+        );
+
+        s0.parentNode.insertBefore(
+            s1,
+            s0
+        );
+
+    })();
+
+</script>
+
+</body>
+</html>
