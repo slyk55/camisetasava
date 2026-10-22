@@ -248,9 +248,11 @@
     }
 
     function getScaleLabel(val) {
-        if (val <= 10.3) return "Pequeno";
-        if (val <= 13.6) return "Médio";
-        return "Grande";
+        if (val <= 6.4) return "Muito Pequeno";
+        if (val <= 7.8) return "Pequeno";
+        if (val <= 9.2) return "Médio";
+        if (val <= 10.6) return "Grande";
+        return "Muito Grande";
     }
 
     /* =====================================================
@@ -1045,7 +1047,7 @@
                 size: size,
                 price: priceFor(size, true),
                 quantity: 1,
-                availability: "Sob Encomenda (3 a 5 dias úteis)",
+                availability: "Sob Encomenda (10 a 30 dias)",
                 customDetails: {
                     view: viewLabel,
                     scale: `${sizeDescription} (${percentVal}%)`,

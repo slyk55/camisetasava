@@ -66,6 +66,11 @@
             cursor:pointer;
         }
 
+        /* Acesso direto ao carrinho no cabeçalho mobile */
+        .mobile-header-actions { display:flex; align-items:center; gap:12px; }
+        .mobile-cart-button { display:none; position:relative; align-items:center; justify-content:center; width:42px; height:42px; background:rgba(179,136,255,.13); border:1px solid #b388ff; border-radius:9px; color:#b388ff; font-size:1.12rem; cursor:pointer; }
+        .mobile-cart-count { position:absolute; top:-7px; right:-7px; display:flex; align-items:center; justify-content:center; min-width:19px; height:19px; box-sizing:border-box; padding:0 4px; border-radius:20px; background:#b388ff; color:#0a0f16; font-size:.65rem; font-weight:800; }
+
         .store-cart-count {
             display:inline-flex;
             align-items:center;
@@ -980,6 +985,10 @@
                 display:block;
             }
 
+            .mobile-cart-button {
+                display:flex;
+            }
+
             .nav-links {
                 display:none;
                 flex-direction:column;
@@ -1159,13 +1168,20 @@
         Ava<span style="color:#b388ff;">Store</span>
     </div>
 
-    <button
-        class="menu-toggle"
-        id="menuToggle"
-        aria-label="Abrir Menu"
-    >
-        <i class="fa-solid fa-bars"></i>
-    </button>
+    <div class="mobile-header-actions">
+        <button type="button" class="mobile-cart-button" id="mobileCartButton" aria-label="Abrir carrinho">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="mobileCartCount" class="mobile-cart-count">0</span>
+        </button>
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Abrir Menu"
+        >
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
 
     <nav class="nav-links" id="navLinks">
 
@@ -1210,19 +1226,14 @@
 
 <section class="store-hero">
 
-    <span class="badge-drop">
-        <i class="fa-solid fa-tag"></i>
-        Lote 01 // Coleção Exclusiva
-    </span>
-
     <h1>
         Arte Própria em Resolução 8K.<br>
-        <span>Estamparia DTF Premium.</span>
+        <span>Camisetas Estampadas em DTF Premium.</span>
     </h1>
 
     <p>
         Estampas 100% originais e autorais. Cada estampa é desenvolvida
-        em altíssima definição 8K e impressa em formato A3 sobre malha
+        em altíssima definição 8K e impressa com máxima qualidade sobre malha
         nobre catarinense, garantindo durabilidade extrema e fidelidade
         total de cores.
     </p>
@@ -1248,7 +1259,7 @@
 
         <div class="process-card">
             <i class="fa-solid fa-layer-group"></i>
-            <h4>Impressão DTF Formato A3</h4>
+            <h4>Impressão DTF</h4>
             <p>
                 Estampa direta no tecido com máxima vivacidade, toque flexível
                 e extrema resistência a lavagens.
@@ -1257,7 +1268,7 @@
 
         <div class="process-card">
             <i class="fa-solid fa-gem"></i>
-            <h4>Malha Nobre de Brusque-SC</h4>
+            <h4>Malha de Brusque-SC</h4>
             <p>
                 Camisetas com caimento encorpado e acabamento premium vindas
                 do principal polo têxtil catarinense.
@@ -1268,7 +1279,7 @@
             <i class="fa-solid fa-handshake"></i>
             <h4>Venda Direta Local</h4>
             <p>
-                Estoque a pronta entrega nas numerações principais e produção
+                Estoque a pronta entrega nas coleções e numerações principais e produção
                 sob encomenda para a grade completa.
             </p>
         </div>
@@ -2592,7 +2603,7 @@
         <div class="custom-modal-body">
             <div class="custom-notice-badge">
                 <i class="fa-solid fa-clock"></i>
-                <span><strong>Sob Encomenda:</strong> Produção e estamparia DTF em até 49,5 cm de largura. Prazo de confecção: 3 a 5 dias úteis.</span>
+                <span><strong>Sob Encomenda:</strong> Produção e estamparia DTF em até 49,5 cm de largura. Prazo de confecção: 10 a 30 dias.</span>
             </div>
 
             <!-- Coluna Visual: Palco da Camiseta -->
@@ -2748,6 +2759,27 @@
         link.addEventListener("click", function () {
             closeMenu();
         });
+    });
+
+    // O botão móvel utiliza o carrinho original e acompanha seu contador.
+    const mobileCartButton = document.getElementById("mobileCartButton");
+    const mobileCartCount = document.getElementById("mobileCartCount");
+    const cartCount = document.getElementById("cartCount");
+    const originalCartButton = document.getElementById("openCartButton");
+
+    mobileCartButton.addEventListener("click", function () {
+        closeMenu();
+        originalCartButton.click();
+    });
+
+    function syncMobileCartCount() {
+        mobileCartCount.textContent = cartCount.textContent.trim() || "0";
+    }
+    syncMobileCartCount();
+    new MutationObserver(syncMobileCartCount).observe(cartCount, {
+        childList: true,
+        characterData: true,
+        subtree: true
     });
 
     function handleOutsideClick(e) {
