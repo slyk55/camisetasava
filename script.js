@@ -414,6 +414,22 @@
         return stock > 0 ? "Pronta Entrega" : "Esgotado";
     }
 
+    // Seleciona automaticamente o primeiro tamanho disponível no estoque
+    function autoSelecionarTamanhoDisponivel(card) {
+        const select = card.querySelector(".product-size");
+        if (!select) return;
+
+        const isStockModel = card.dataset.stockModel === "true";
+        if (!isStockModel) return; // Se for sob encomenda nativa, não mexe
+
+        const options = Array.from(select.options);
+        const tamanhoDisponivel = options.find(opt => getStock(card, opt.value) > 0);
+
+        if (tamanhoDisponivel) {
+            select.value = tamanhoDisponivel.value;
+        }
+    }
+
     function updateSizeStatus(card) {
         const select = card.querySelector(".product-size");
         const statusBox = card.querySelector(".selected-size-status");
@@ -430,7 +446,7 @@
             priceTag.textContent = formatCurrency(priceFor(size, false));
         }
 
-        // Reseta estilos visuais personalizados anteriores
+        // Reseta estilos visuais anteriores
         statusBox.style.color = "";
         statusBox.style.borderColor = "";
         statusBox.style.background = "";
@@ -455,15 +471,25 @@
             statusBox.style.color = "#ff647c";
             statusBox.style.borderColor = "rgba(255,100,124,.3)";
             statusBox.style.background = "rgba(255,100,124,.05)";
-            statusBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Tam. ' + size + ': Esgotado';
+            
+            const selectOptions = Array.from(select.options);
+            const temOutroTamanho = selectOptions.some(opt => getStock(card, opt.value) > 0);
+
+            if (temOutroTamanho) {
+                statusBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Tam. ' + size + ' esgotado (escolha outro)';
+            } else {
+                statusBox.innerHTML = '<i class="fa-solid fa-clock"></i> Sem estoque físico — Sob Encomenda (10 a 30 dias)';
+            }
+
             if (qtyInput) {
-                qtyInput.value = 0;
-                qtyInput.disabled = true;
+                qtyInput.max = 10;
+                qtyInput.disabled = false;
+                if (parseInt(qtyInput.value, 10) < 1) qtyInput.value = 1;
             }
             if (addBtn) {
-                addBtn.disabled = true;
-                addBtn.style.opacity = "0.5";
-                addBtn.style.cursor = "not-allowed";
+                addBtn.disabled = false;
+                addBtn.style.opacity = "1";
+                addBtn.style.cursor = "pointer";
             }
         } else {
             // Sob Encomenda (Modelos nativos)
@@ -496,11 +522,6 @@
 
         const stock = getStock(card, size);
         const avail = getAvailability(card, size);
-
-        if (avail === "Esgotado") {
-            showToast("Desculpe, este tamanho está esgotado.");
-            return;
-        }
 
         // Validação rigorosa de estoque para pronta entrega
         if (avail === "Pronta Entrega" && quantity > stock) {
@@ -859,6 +880,8 @@
         const sizeSelect = card.querySelector(".product-size");
         const thumb = card.querySelector(".shirt-thumb");
 
+        // Seleciona automaticamente o primeiro tamanho com estoque disponível
+        autoSelecionarTamanhoDisponivel(card);
         updateSizeStatus(card);
 
         if (sizeSelect) {
@@ -889,15 +912,21 @@
                 const size = sizeSelect ? sizeSelect.value : "M";
                 const stock = getStock(card, size);
                 const avail = getAvailability(card, size);
-                
-                if (avail === "Esgotado") return;
+                const isStockModel = card.dataset.stockModel === "true";
 
-                const maxLimit = avail === "Pronta Entrega" ? stock : 10;
+                let maxLimit = 10;
+                if (isStockModel) {
+                    if (stock > 0) {
+                        maxLimit = stock;
+                    } else {
+                        maxLimit = 10; // Se esgotou o tamanho específico mas vai como encomenda
+                    }
+                }
 
                 if (val < maxLimit) {
                     qtyInput.value = val + 1;
                 } else {
-                    showToast(avail === "Pronta Entrega" ? `Estoque máximo atingido (${stock} un.).` : "Máximo de 10 unidades por pedido.");
+                    showToast(isStockModel && stock > 0 ? `Estoque máximo atingido (${stock} un.).` : "Máximo de 10 unidades por pedido.");
                 }
             });
         }
