@@ -32,15 +32,8 @@
         });
     }
 
-    const READY_SIZES = [
-        "M",
-        "G",
-        "GG",
-        "G1"
-    ];
-
     /* =====================================================
-       ELEMENTOS
+        ELEMENTOS
     ===================================================== */
 
     const cartPanel =
@@ -191,15 +184,14 @@
     let currentView = "front";
     let activeSwatch = document.querySelector(".swatch-btn.active");
     let customColor = activeSwatch ? (activeSwatch.dataset.color || "Preto") : "Preto";
-    let customArtTitle = "Cyber Core";
+    let customArtTitle = "Abdução Secreta";
     let posX = 20;
     let posY = 15;
 
-    // Sincronizado estritamente com o novo range HTML (7 a 17) e teto máximo de 39%
     const SLIDER_MIN = 5;
     const SLIDER_MAX = 12;
-    const MIN_SCALE_REAL = 12; // Mínimo real em % da largura na tela
-    const MAX_SCALE_REAL = 28; // Teto máximo restrito exatamente a 39%
+    const MIN_SCALE_REAL = 12;
+    const MAX_SCALE_REAL = 28;
 
     const customerFields = [
         customerName,
@@ -222,7 +214,7 @@
         "";
 
     /* =====================================================
-       FORMATADORES
+        FORMATADORES
     ===================================================== */
 
     function formatCurrency(val) {
@@ -256,7 +248,7 @@
     }
 
     /* =====================================================
-       CARRINHO
+        CARRINHO
     ===================================================== */
 
     function loadCart() {
@@ -277,7 +269,7 @@
     }
 
     /* =====================================================
-       DADOS DO CLIENTE
+        DADOS DO CLIENTE
     ===================================================== */
 
     function loadCustomer() {
@@ -324,7 +316,7 @@
     });
 
     /* =====================================================
-       CEP
+        CEP
     ===================================================== */
 
     function formatCep(value) {
@@ -404,40 +396,94 @@
     });
 
     /* =====================================================
-       DISPONIBILIDADE
+        DISPONIBILIDADE E ESTOQUE
     ===================================================== */
 
+    function getStock(card, size) {
+        const productId = card.dataset.id;
+        const stockObj = (typeof estoqueProdutos !== 'undefined') ? estoqueProdutos[productId] : null;
+        return stockObj ? (stockObj[size] || 0) : 0;
+    }
+
     function getAvailability(card, size) {
-        const hasInitialStock = card.dataset.stockModel === "true";
-        if (hasInitialStock && READY_SIZES.includes(size)) {
-            return "Pronta Entrega";
+        const isStockModel = card.dataset.stockModel === "true";
+        if (!isStockModel) {
+            return "Sob Encomenda"; // Modelos que são nativamente sob encomenda (ex: Maverick, Cyber Neko)
         }
-        return "Sob Encomenda";
+        const stock = getStock(card, size);
+        return stock > 0 ? "Pronta Entrega" : "Esgotado";
     }
 
     function updateSizeStatus(card) {
         const select = card.querySelector(".product-size");
         const statusBox = card.querySelector(".selected-size-status");
+        const qtyInput = card.querySelector(".product-quantity");
+        const addBtn = card.querySelector(".btn-add-cart");
         if (!select || !statusBox) return;
 
         const size = select.value;
+        const stock = getStock(card, size);
         const avail = getAvailability(card, size);
         const priceTag = card.querySelector(".shirt-price-tag");
+        
         if (priceTag) {
             priceTag.textContent = formatCurrency(priceFor(size, false));
         }
 
+        // Reseta estilos visuais personalizados anteriores
+        statusBox.style.color = "";
+        statusBox.style.borderColor = "";
+        statusBox.style.background = "";
+
         if (avail === "Pronta Entrega") {
             statusBox.className = "selected-size-status ready";
-            statusBox.innerHTML = '<i class="fa-solid fa-bolt"></i> Tam. ' + size + ': Pronta Entrega';
-        } else {
+            statusBox.innerHTML = '<i class="fa-solid fa-bolt"></i> Tam. ' + size + ': Pronta Entrega (' + stock + ' disp.)';
+            if (qtyInput) {
+                qtyInput.max = stock;
+                qtyInput.disabled = false;
+                if (parseInt(qtyInput.value, 10) > stock) {
+                    qtyInput.value = stock;
+                }
+            }
+            if (addBtn) {
+                addBtn.disabled = false;
+                addBtn.style.opacity = "1";
+                addBtn.style.cursor = "pointer";
+            }
+        } else if (avail === "Esgotado") {
             statusBox.className = "selected-size-status order";
-            statusBox.innerHTML = '<i class="fa-solid fa-clock"></i> Tam. ' + size + ': Sob Encomenda';
+            statusBox.style.color = "#ff647c";
+            statusBox.style.borderColor = "rgba(255,100,124,.3)";
+            statusBox.style.background = "rgba(255,100,124,.05)";
+            statusBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Tam. ' + size + ': Esgotado';
+            if (qtyInput) {
+                qtyInput.value = 0;
+                qtyInput.disabled = true;
+            }
+            if (addBtn) {
+                addBtn.disabled = true;
+                addBtn.style.opacity = "0.5";
+                addBtn.style.cursor = "not-allowed";
+            }
+        } else {
+            // Sob Encomenda (Modelos nativos)
+            statusBox.className = "selected-size-status order";
+            statusBox.innerHTML = '<i class="fa-solid fa-clock"></i> Tam. ' + size + ': Sob Encomenda (10 a 30 dias)';
+            if (qtyInput) {
+                qtyInput.max = 10;
+                qtyInput.disabled = false;
+                if (parseInt(qtyInput.value, 10) < 1) qtyInput.value = 1;
+            }
+            if (addBtn) {
+                addBtn.disabled = false;
+                addBtn.style.opacity = "1";
+                addBtn.style.cursor = "pointer";
+            }
         }
     }
 
     /* =====================================================
-       ADICIONAR
+        ADICIONAR AO CARRINHO
     ===================================================== */
 
     function addToCart(card) {
@@ -447,6 +493,22 @@
         let quantity = parseInt(quantityInput.value, 10);
 
         if (!Number.isFinite(quantity) || quantity < 1) quantity = 1;
+
+        const stock = getStock(card, size);
+        const avail = getAvailability(card, size);
+
+        if (avail === "Esgotado") {
+            showToast("Desculpe, este tamanho está esgotado.");
+            return;
+        }
+
+        // Validação rigorosa de estoque para pronta entrega
+        if (avail === "Pronta Entrega" && quantity > stock) {
+            showToast(`Estoque insuficiente! Temos apenas ${stock} unidade(s) a pronta entrega no tamanho ${size}.`);
+            quantityInput.value = stock;
+            return;
+        }
+
         if (quantity > 10) quantity = 10;
         quantityInput.value = quantity;
 
@@ -459,7 +521,7 @@
             price: price,
             size: size,
             quantity: quantity,
-            availability: getAvailability(card, size)
+            availability: avail
         };
 
         const existing = cart.find(function (product) {
@@ -473,7 +535,12 @@
         });
 
         if (existing) {
-            existing.quantity += quantity;
+            const novaQtd = existing.quantity + quantity;
+            if (avail === "Pronta Entrega" && novaQtd > stock) {
+                showToast(`Quantidade excede o estoque disponível (${stock} un.).`);
+                return;
+            }
+            existing.quantity = novaQtd;
         } else {
             cart.push(item);
         }
@@ -483,7 +550,7 @@
     }
 
     /* =====================================================
-       TOTAL & SUBTOTAL
+        TOTAL & SUBTOTAL
     ===================================================== */
 
     function totalQuantity() {
@@ -500,7 +567,7 @@
     }
 
     /* =====================================================
-       RENDER
+        RENDER
     ===================================================== */
 
     function renderCart() {
@@ -563,7 +630,7 @@
     }
 
     /* =====================================================
-       ETAPAS MOBILE
+        ETAPAS MOBILE
     ===================================================== */
 
     function showCartStep() {
@@ -589,7 +656,7 @@
     backToCartButton.addEventListener("click", showCartStep);
 
     /* =====================================================
-       ABRIR / FECHAR CARRINHO
+        ABRIR / FECHAR CARRINHO
     ===================================================== */
 
     function openCart() {
@@ -617,7 +684,7 @@
     cartOverlay.addEventListener("click", closeCart);
 
     /* =====================================================
-       ZOOM MODAL
+        ZOOM MODAL
     ===================================================== */
 
     function openZoomModal(imgSrc, title, desc) {
@@ -643,7 +710,7 @@
     });
 
     /* =====================================================
-       RESIZE
+        RESIZE
     ===================================================== */
 
     window.addEventListener("resize", function () {
@@ -655,7 +722,7 @@
     });
 
     /* =====================================================
-       TOAST
+        TOAST
     ===================================================== */
 
     function showToast(message) {
@@ -668,7 +735,7 @@
     }
 
     /* =====================================================
-       NÚMERO DO PEDIDO
+        NÚMERO DO PEDIDO
     ===================================================== */
 
     function generateOrderNumber() {
@@ -684,7 +751,7 @@
     }
 
     /* =====================================================
-       VALIDAÇÃO
+        VALIDAÇÃO
     ===================================================== */
 
     function validateCustomerData() {
@@ -734,7 +801,7 @@
     }
 
     /* =====================================================
-       MENSAGEM WHATSAPP
+        MENSAGEM WHATSAPP
     ===================================================== */
 
     function buildWhatsAppMessage() {
@@ -747,11 +814,11 @@
             const itemSubtotal = (item.price || 0) * item.quantity;
 
             message += `${index + 1}) ${item.quantity}x ${item.id === "CUSTOM" ? item.name : `Camiseta ${item.id}:${item.name}`}\n` +
-                       `Cor: ${item.color}\n` +
-                       `Tamanho: ${item.size}\n` +
-                       `Preço unitário: ${formatCurrency(item.price || 0)}\n` +
-                       `Subtotal: ${formatCurrency(itemSubtotal)}\n` +
-                       `Status: [${item.availability.toUpperCase()}]\n`;
+                      `Cor: ${item.color}\n` +
+                      `Tamanho: ${item.size}\n` +
+                      `Preço unitário: ${formatCurrency(item.price || 0)}\n` +
+                      `Subtotal: ${formatCurrency(itemSubtotal)}\n` +
+                      `Status: [${item.availability.toUpperCase()}]\n`;
 
             if (item.customDetails) {
                 message += `» Configuração da Estampa: ${item.customDetails.view} | Tamanho: ${item.customDetails.scale} | Posição: ${item.customDetails.position}\n`;
@@ -781,7 +848,7 @@
     }
 
     /* =====================================================
-       VINCULAR PRODUTOS & CONTROLES
+        VINCULAR PRODUTOS & CONTROLES
     ===================================================== */
 
     document.querySelectorAll(".shirt-card").forEach(function (card) {
@@ -819,7 +886,19 @@
         if (btnPlus && qtyInput) {
             btnPlus.addEventListener("click", function () {
                 let val = parseInt(qtyInput.value, 10) || 1;
-                if (val < 10) qtyInput.value = val + 1;
+                const size = sizeSelect ? sizeSelect.value : "M";
+                const stock = getStock(card, size);
+                const avail = getAvailability(card, size);
+                
+                if (avail === "Esgotado") return;
+
+                const maxLimit = avail === "Pronta Entrega" ? stock : 10;
+
+                if (val < maxLimit) {
+                    qtyInput.value = val + 1;
+                } else {
+                    showToast(avail === "Pronta Entrega" ? `Estoque máximo atingido (${stock} un.).` : "Máximo de 10 unidades por pedido.");
+                }
             });
         }
 
@@ -831,7 +910,7 @@
     });
 
     /* =====================================================
-       LÓGICA DO PERSONALIZADOR
+        LÓGICA DO PERSONALIZADOR
     ===================================================== */
     function updateMockupSource() {
         if (!activeSwatch || !customMockupBase) return;
@@ -857,7 +936,6 @@
         btnCloseCustomizer.addEventListener("click", closeCustomizer);
     }
 
-    // Seleção de Frente / Costas
     document.querySelectorAll(".btn-toggle-view").forEach(function (btn) {
         btn.addEventListener("click", function () {
             document.querySelectorAll(".btn-toggle-view").forEach(function (b) {
@@ -869,7 +947,6 @@
         });
     });
 
-    // Seleção de Cores do Fornecedor
     document.querySelectorAll(".swatch-btn").forEach(function (btn) {
         btn.addEventListener("click", function () {
             document.querySelectorAll(".swatch-btn").forEach(function (b) {
@@ -883,7 +960,6 @@
         });
     });
 
-    // Troca de Estampa
     if (customDesignSelect) {
         customDesignSelect.addEventListener("change", function (e) {
             if (e.target.value === "custom_upload") {
@@ -900,7 +976,6 @@
         });
     }
 
-    // Upload Próprio
     if (customArtUpload) {
         customArtUpload.addEventListener("change", function (e) {
             const file = e.target.files[0];
@@ -915,7 +990,6 @@
         });
     }
 
-    // Escala Proporcional Visual com base estrita nos limites min=5 e max=12, travado em 39% max
     function updateArtScale(sliderVal) {
         const val = parseFloat(sliderVal);
         const description = getScaleLabel(val);
@@ -924,7 +998,6 @@
             lblArtSizeText.textContent = description;
         }
 
-        // Mapeia linearmente o slider de 5 a 12 para o tamanho visual de 15% até 39%
         const t = (val - SLIDER_MIN) / (SLIDER_MAX - SLIDER_MIN);
         const visualWidthPercent = MIN_SCALE_REAL + (t * (MAX_SCALE_REAL - MIN_SCALE_REAL));
 
@@ -941,7 +1014,6 @@
         updateArtScale(sliderArtWidth.value || 12);
     }
 
-    // Arrasto Livre em 100% da imagem da camiseta
     let isDragging = false;
     let startX = 0, startY = 0, origLeft = 0, origTop = 0;
 
@@ -1026,7 +1098,6 @@
         updateCustomPriceLabel();
     }
 
-    // Confirmar e adicionar ao carrinho
     if (btnConfirmCustomItem) {
         btnConfirmCustomItem.addEventListener("click", function () {
             const size = customSelectedSize ? customSelectedSize.value : "M";
@@ -1035,7 +1106,6 @@
             const currentSliderVal = sliderArtWidth ? parseFloat(sliderArtWidth.value) : 12;
             const sizeDescription = getScaleLabel(currentSliderVal);
             
-            // Calcula com precisão a porcentagem exata de 0% a 100% baseada no range 5 a 12
             let percentVal = Math.round(((currentSliderVal - SLIDER_MIN) / (SLIDER_MAX - SLIDER_MIN)) * 100);
             if (percentVal < 0) percentVal = 0;
             if (percentVal > 100) percentVal = 100;
@@ -1065,7 +1135,7 @@
     }
 
     /* =====================================================
-       CHECKOUT
+        CHECKOUT
     ===================================================== */
 
     checkoutButton.addEventListener("click", function () {
@@ -1095,7 +1165,7 @@
     });
 
     /* =====================================================
-       LIMPAR CARRINHO
+        LIMPAR CARRINHO
     ===================================================== */
 
     clearCartButton.addEventListener("click", function () {
@@ -1110,7 +1180,7 @@
     });
 
     /* =====================================================
-       ESC
+        ESC
     ===================================================== */
 
     document.addEventListener("keydown", function (event) {
@@ -1126,7 +1196,7 @@
     });
 
     /* =====================================================
-       INICIAR
+        INICIAR
     ===================================================== */
 
     loadCustomer();
